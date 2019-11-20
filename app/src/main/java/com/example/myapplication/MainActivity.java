@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView img_camara;
     Button btn_start;
     final int PHOTO_CONSTANT = 1;
-    String mAbsolutePâth = "";
+    String mAbsolutePath = "";
 
 
     @Override
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
             if (photoFile != null) {
-                Uri photoUri = FileProvider.getUriForFile(MainActivity.this, "com.codigo.recplants", photoFile);
+                Uri photoUri = FileProvider.getUriForFile(MainActivity.this, "com.example.myapplication", photoFile);
                 TomarFoto.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 startActivityForResult(TomarFoto, PHOTO_CONSTANT);
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         File storageFile = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File photoFile = File.createTempFile(imageFileName, "jpj", storageFile);
-        mAbsolutePâth = photoFile.getAbsolutePath();
+        mAbsolutePath= photoFile.getAbsolutePath();
         return photoFile;
 
     }
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PHOTO_CONSTANT && resultCode == RESULT_OK) ;
-        Uri uri = Uri.parse(mAbsolutePâth);
+        Uri uri = Uri.parse(mAbsolutePath);
         img_camara.setImageURI(uri);
 
 
